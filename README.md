@@ -1,4 +1,4 @@
-# shopping_app
+# Prime Fruits App
 
 A new Flutter project.
 
