@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:shopping_app/components/Food_grid.dart';
-import 'package:shopping_app/models/Cart_model.dart';
-import 'package:shopping_app/pages/Cart_page.dart';
+import 'package:prime_fruits/components/Food_grid.dart';
+import 'package:prime_fruits/models/Cart_model.dart';
+import 'package:prime_fruits/pages/Cart_page.dart';
 
 class Homepage extends StatefulWidget {
   const Homepage({super.key});

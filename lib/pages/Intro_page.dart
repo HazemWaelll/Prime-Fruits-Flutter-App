@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:shopping_app/pages/Home_page.dart';
+import 'package:prime_fruits/pages/Home_page.dart';
 
 class Intropage extends StatelessWidget {
   const Intropage({super.key});

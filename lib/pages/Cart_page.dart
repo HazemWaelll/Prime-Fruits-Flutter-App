@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:shopping_app/models/Cart_model.dart';
-import 'package:shopping_app/pages/Error_page.dart';
+import 'package:prime_fruits/models/Cart_model.dart';
+import 'package:prime_fruits/pages/Error_page.dart';
 
 class Cartpage extends StatelessWidget {
   const Cartpage({super.key});
