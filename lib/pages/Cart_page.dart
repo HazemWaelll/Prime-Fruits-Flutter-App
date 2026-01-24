@@ -9,13 +9,14 @@ class Cartpage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(backgroundColor: Colors.transparent),
-
       body: Consumer<Cartmodel>(
         builder: (context, value, child) {
           return Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              // Safe area
+              SizedBox(height: 85,),
+
               // My Cart
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 24.0),

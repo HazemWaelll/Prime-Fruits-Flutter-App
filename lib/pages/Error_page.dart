@@ -16,7 +16,7 @@ class Errorpage extends StatelessWidget {
               SizedBox(
                 height: 200,
                 width: 200,
-                child: Image.asset("lib/images/Error.png"),
+                child: Image.asset("assets/images/Error.png"),
               ),
             ],
           ),

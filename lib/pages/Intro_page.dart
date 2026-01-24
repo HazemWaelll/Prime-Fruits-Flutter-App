@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:prime_fruits/pages/Home_page.dart';
+import 'package:prime_fruits/models/Bottom_Bar.dart';
 
 class Intropage extends StatelessWidget {
   const Intropage({super.key});
@@ -18,7 +18,7 @@ class Intropage extends StatelessWidget {
               top: 100,
               bottom: 50,
             ),
-            child: Image.asset('lib/images/figs.png'),
+            child: Image.asset('assets/images/figs.png'),
           ),
 
           // We deliver fresh food to your home
@@ -41,7 +41,7 @@ class Intropage extends StatelessWidget {
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => Homepage()),
+                MaterialPageRoute(builder: (context) => BottomBar()),
               );
             },
             child: Container(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:prime_fruits/models/Favorite_model.dart';
 import 'package:provider/provider.dart';
 import 'package:prime_fruits/models/Cart_model.dart';
 import 'package:prime_fruits/pages/Intro_page.dart';
@@ -12,8 +13,11 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (context) => Cartmodel(),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => Cartmodel(),),
+        ChangeNotifierProvider(create: (context) => Favoritemodel(),)
+      ],
       child: const MaterialApp(
         debugShowCheckedModeBanner: false,
         home: Intropage(),

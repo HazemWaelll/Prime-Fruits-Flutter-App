@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:prime_fruits/models/Favorite_model.dart';
 import 'package:provider/provider.dart';
 import 'package:prime_fruits/components/Food_grid.dart';
 import 'package:prime_fruits/models/Cart_model.dart';
-import 'package:prime_fruits/pages/Cart_page.dart';
+//import 'package:prime_fruits/pages/Cart_page.dart';
 
 class Homepage extends StatefulWidget {
   const Homepage({super.key});
@@ -46,32 +47,42 @@ class _HomepageState extends State<Homepage> {
 
           SizedBox(height: 24),
 
-          // fresh items + grid
+          // note! + grid
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 24.0),
-            child: Text("Fresh items"),
+            padding: const EdgeInsets.only(left: 24.0, right: 24.0, bottom: 4.5),
+            child: Text(
+                "Note! Minimum amount to purchase is 1 kilo.",
+                style: TextStyle(fontSize: 16),
+            ),
           ),
 
           Expanded(
-            child: Consumer<Cartmodel>(
-              builder: (context, value, child) {
+            child: Consumer2<Cartmodel, Favoritemodel>(
+              builder: (context, cartvalue, favoritevalue, child) {
                 return GridView.builder(
-                  itemCount: value.shopitems.length,
+                  itemCount: cartvalue.shopitems.length,
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
-                    childAspectRatio: 1 / 1.15,
+                    childAspectRatio: 1 / 1.29,
                   ),
                   itemBuilder: (BuildContext context, int index) {
                     return Foodgrid(
-                      itemname: value.shopitems[index][0],
-                      itemprice: value.shopitems[index][1],
-                      imagepath: value.shopitems[index][2],
+                      itemname: cartvalue.shopitems[index][0],
+                      itemprice: cartvalue.shopitems[index][1],
+                      imagepath: cartvalue.shopitems[index][2],
+                      isFavorite: favoritevalue.isInFavorites(index),
                       onPressed: () {
                         Provider.of<Cartmodel>(
                           context,
                           listen: false,
                         ).additemstocart(index);
-                        massagebar(context);
+                        massagebar(context, "Item added to cart");
+                      },
+                      onFavoritePressed: () {
+                        Provider.of<Favoritemodel>(
+                          context,
+                          listen: false,
+                        ).toggleFavorite(index);
                       },
                     );
                   },
@@ -81,25 +92,12 @@ class _HomepageState extends State<Homepage> {
           ),
         ],
       ),
-
-      // floating action button (cart)
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => Cartpage()),
-          );
-        },
-        backgroundColor: Colors.black,
-        foregroundColor: Colors.white,
-        child: Icon(Icons.shopping_basket),
-      ),
     );
   }
 
-  massagebar(BuildContext context) {
+  massagebar(BuildContext context, String message) {
     SnackBar snackBar = SnackBar(
-      content: const Text("Item added successfully to the cart"),
+      content: Text(message),
       duration: const Duration(milliseconds: 650),
       action: SnackBarAction(label: "ok", onPressed: () {}),
     );
