@@ -19,7 +19,7 @@ class Favoritemodel extends ChangeNotifier {
     ["strawberry", "6.50", "assets/images/strawberry.png"],
     ["watermelon", "6.00", "assets/images/watermelon.png"],
   ];
-  // list of cart items
+  // list of favorites items
   final List _favoriteitems = [];
 
   List get shopitems => _shopitems;
@@ -55,14 +55,5 @@ class Favoritemodel extends ChangeNotifier {
   void removeitemsfromfavorites(int index) {
     _favoriteitems.removeAt(index);
     notifyListeners();
-  }
-
-  // calculate total price
-  String calculatetotalprice() {
-    double totalprice = 0;
-    for (int i = 0; i < _favoriteitems.length; i++) {
-      totalprice += double.parse(_favoriteitems[i][1]);
-    }
-    return totalprice.toStringAsFixed(2);
   }
 }

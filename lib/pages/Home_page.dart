@@ -3,7 +3,6 @@ import 'package:prime_fruits/models/Favorite_model.dart';
 import 'package:provider/provider.dart';
 import 'package:prime_fruits/components/Food_grid.dart';
 import 'package:prime_fruits/models/Cart_model.dart';
-//import 'package:prime_fruits/pages/Cart_page.dart';
 
 class Homepage extends StatefulWidget {
   const Homepage({super.key});
@@ -15,12 +14,12 @@ class Homepage extends StatefulWidget {
 class _HomepageState extends State<Homepage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Column(
+    return SafeArea(
+      child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           // safe area
-          SizedBox(height: 85),
+          const SizedBox(height: 28),
 
           // hi there
           Padding(
@@ -49,10 +48,14 @@ class _HomepageState extends State<Homepage> {
 
           // note! + grid
           Padding(
-            padding: const EdgeInsets.only(left: 24.0, right: 24.0, bottom: 4.5),
+            padding: const EdgeInsets.only(
+              left: 24.0,
+              right: 24.0,
+              bottom: 4.5,
+            ),
             child: Text(
-                "Note! Minimum amount to purchase is 1 kilo.",
-                style: TextStyle(fontSize: 16),
+              "Note! Minimum amount to purchase is 1 kilo.",
+              style: TextStyle(fontSize: 16),
             ),
           ),
 
@@ -63,7 +66,7 @@ class _HomepageState extends State<Homepage> {
                   itemCount: cartvalue.shopitems.length,
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
-                    childAspectRatio: 1 / 1.29,
+                    childAspectRatio: 1 / 1.23,
                   ),
                   itemBuilder: (BuildContext context, int index) {
                     return Foodgrid(

@@ -43,22 +43,34 @@ class Foodgrid extends StatelessWidget {
           ),
 
           // image
-          Image.asset(imagepath, height: 90),
+          Transform.translate(
+            offset: const Offset(0, -20),
+            child: Image.asset(imagepath, height: 80),
+          ),
 
           // name
-          Text(itemname, style: TextStyle(fontSize: 20)),
+          Transform.translate(
+            offset: const Offset(0, -18),
+            child: Text(itemname, style: TextStyle(fontSize: 20)),
+          ),
 
           // price
-          Text(
-            '\$$itemprice',
-            style: TextStyle(fontSize: 17, fontWeight: FontWeight.w900),
+          Transform.translate(
+            offset: Offset(0, -16),
+            child: Text(
+              '\$$itemprice',
+              style: TextStyle(fontSize: 17, fontWeight: FontWeight.w900),
+            ),
           ),
 
           // add to cart
-          MaterialButton(
-            onPressed: onPressed,
-            color: Colors.greenAccent,
-            child: Text('Add To Cart', style: TextStyle(fontSize: 17)),
+          Transform.translate(
+            offset: const Offset(0, -15),
+            child: MaterialButton(
+              onPressed: onPressed,
+              color: Colors.greenAccent,
+              child: Text('Add To Cart', style: TextStyle(fontSize: 14)),
+            ),
           ),
         ],
       ),

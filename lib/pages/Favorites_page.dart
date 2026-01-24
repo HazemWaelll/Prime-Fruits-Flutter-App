@@ -1,19 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:prime_fruits/models/Favorite_model.dart';
+
 class Favoritespage extends StatelessWidget {
   const Favoritespage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Consumer<Favoritemodel>(
+    return SafeArea(
+      child: Consumer<Favoritemodel>(
         builder: (context, value, child) {
           return Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Safe area
-              SizedBox(height: 85),
+              // safe area
+              const SizedBox(height: 28,),
 
               // My Favorites
               Padding(

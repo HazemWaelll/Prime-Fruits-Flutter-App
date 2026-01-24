@@ -8,14 +8,14 @@ class Cartpage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Consumer<Cartmodel>(
+    return SafeArea(
+      child: Consumer<Cartmodel>(
         builder: (context, value, child) {
           return Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Safe area
-              SizedBox(height: 85,),
+              // safe area
+              const SizedBox(height: 28,),
 
               // My Cart
               Padding(
