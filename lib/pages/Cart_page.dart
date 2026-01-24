@@ -10,7 +10,7 @@ class Cartpage extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Consumer<Cartmodel>(
-        builder: (context, value, child) {
+        builder: (context, cartvalue, child) {
           return Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -28,40 +28,47 @@ class Cartpage extends StatelessWidget {
 
               // Cart Items
               Expanded(
-                child: ListView.builder(
-                  itemCount: value.cartitems.length,
-                  padding: EdgeInsets.all(12),
-                  itemBuilder: (context, index) {
-                    return Padding(
-                      padding: const EdgeInsets.all(12.0),
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: Colors.grey[200],
-                          borderRadius: BorderRadius.circular(8),
+                child: cartvalue.cartitems.isEmpty?
+                      Center(
+                        child: Text(
+                          "Cart is empty",
+                          style: TextStyle(fontSize: 18, color: Colors.black, fontWeight: FontWeight.bold),
                         ),
-                        child: ListTile(
-                          leading: Image.asset(
-                            value.cartitems[index][2],
-                            height: 36,
-                          ),
-                          title: Text(value.cartitems[index][0]),
-                          // ignore: prefer_interpolation_to_compose_strings
-                          subtitle: Text('\$' + value.cartitems[index][1]),
-                          trailing: IconButton(
-                            onPressed: () {
-                              Provider.of<Cartmodel>(
-                                context,
-                                listen: false,
-                              ).removeitemsfromcart(index);
-                            },
-                            icon: Icon(Icons.cancel),
-                          ),
-                        ),
+                      )
+                    : ListView.builder(
+                        itemCount: cartvalue.cartitems.length,
+                        padding: EdgeInsets.all(12),
+                        itemBuilder: (context, index) {
+                          return Padding(
+                            padding: const EdgeInsets.all(12.0),
+                            child: Container(
+                              decoration: BoxDecoration(
+                                color: Colors.grey[200],
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                              child: ListTile(
+                                leading: Image.asset(
+                                  cartvalue.cartitems[index][2],
+                                  height: 36,
+                                ),
+                                title: Text(cartvalue.cartitems[index][0]),
+                                // ignore: prefer_interpolation_to_compose_strings
+                                subtitle: Text('\$' + cartvalue.cartitems[index][1]),
+                                trailing: IconButton(
+                                  onPressed: () {
+                                    Provider.of<Cartmodel>(
+                                      context,
+                                      listen: false,
+                                    ).removeitemsfromcart(index);
+                                  },
+                                  icon: Icon(Icons.cancel),
+                                ),
+                              ),
+                            ),
+                          );
+                        },
                       ),
-                    );
-                  },
-                ),
-              ),
+                    ),
 
               // Total Price Container
               Padding(
@@ -83,7 +90,7 @@ class Cartpage extends StatelessWidget {
                             style: TextStyle(color: Colors.white, fontSize: 17),
                           ),
                           Text(
-                            '\$${value.calculatetotalprice()}',
+                            '\$${cartvalue.calculatetotalprice()}',
                             style: TextStyle(
                               color: Colors.white,
                               fontWeight: FontWeight.bold,
