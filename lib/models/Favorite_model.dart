@@ -53,7 +53,12 @@ class Favoritemodel extends ChangeNotifier {
 
   // remove items from favorites
   void removeitemsfromfavorites(int index) {
-    _favoriteitems.removeAt(index);
+    _favoriteitems.removeWhere(
+      (item) =>
+          item[0] == _shopitems[index][0] &&
+          item[1] == _shopitems[index][1] &&
+          item[2] == _shopitems[index][2],
+    );
     notifyListeners();
   }
 }

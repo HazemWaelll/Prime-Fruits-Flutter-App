@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:prime_fruits/models/Favorite_model.dart';
 import 'package:prime_fruits/pages/Cart_page.dart';
 import 'package:prime_fruits/pages/Favorites_page.dart';
 import 'package:prime_fruits/pages/Home_page.dart';
+import 'package:provider/provider.dart';
+import 'package:prime_fruits/models/Cart_model.dart';
 
 class BottomBar extends StatefulWidget {
   const BottomBar({super.key});
@@ -21,15 +24,39 @@ class _BottomBarState extends State<BottomBar> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: pages[selectedindex],
+      bottomNavigationBar: Consumer2<Cartmodel,Favoritemodel>(
+        builder: (context, cartvalue, favoritevalue, child) {
+          return BottomNavigationBar(
 
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: selectedindex,
-        onTap: onitemtapped,
-        items: [
-          const BottomNavigationBarItem(label: "Home", icon: Icon(Icons.home)),
-          const BottomNavigationBarItem(label: "Favorites", icon: Icon(Icons.favorite)),
-          const BottomNavigationBarItem(label: "Cart", icon: Icon(Icons.shopping_basket)),
-        ],
+            currentIndex: selectedindex,
+            onTap: onitemtapped,
+
+            items: [
+              const BottomNavigationBarItem(
+                label: "Home",
+                icon: Icon(Icons.home),
+              ),
+
+              BottomNavigationBarItem(
+                label: "Favorites",
+                icon: Badge.count(
+                  count: favoritevalue.favoriteitems.length,
+                  isLabelVisible: favoritevalue.favoriteitems.isNotEmpty,
+                  child: Icon(Icons.favorite),
+                )
+              ),
+              
+              BottomNavigationBarItem(
+                label: "Cart",
+                icon: Badge.count(
+                  count: cartvalue.cartitems.length,
+                  isLabelVisible: cartvalue.cartitems.isNotEmpty,
+                  child: Icon(Icons.shopping_basket),
+                ),
+              ),
+            ],
+          );
+        },
       ),
     );
   }

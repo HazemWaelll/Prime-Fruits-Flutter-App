@@ -79,7 +79,6 @@ class _HomepageState extends State<Homepage> {
                           context,
                           listen: false,
                         ).additemstocart(index);
-                        massagebar(context, "Item added to cart");
                       },
                       onFavoritePressed: () {
                         Provider.of<Favoritemodel>(
@@ -98,12 +97,4 @@ class _HomepageState extends State<Homepage> {
     );
   }
 
-  massagebar(BuildContext context, String message) {
-    SnackBar snackBar = SnackBar(
-      content: Text(message),
-      duration: const Duration(milliseconds: 650),
-      action: SnackBarAction(label: "ok", onPressed: () {}),
-    );
-    ScaffoldMessenger.of(context).showSnackBar(snackBar);
-  }
 }
