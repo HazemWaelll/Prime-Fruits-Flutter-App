@@ -22,7 +22,7 @@ class Cartpage extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 24.0),
                 child: Text(
                   "My Cart",
-                  style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+                  style: Theme.of(context).textTheme.headlineLarge,
                 ),
               ),
 
@@ -32,7 +32,7 @@ class Cartpage extends StatelessWidget {
                       Center(
                         child: Text(
                           "Cart is empty",
-                          style: TextStyle(fontSize: 18, color: Colors.black, fontWeight: FontWeight.bold),
+                          style: Theme.of(context).textTheme.bodyLarge,
                         ),
                       )
                     : ListView.builder(
@@ -43,7 +43,7 @@ class Cartpage extends StatelessWidget {
                             padding: const EdgeInsets.all(12.0),
                             child: Container(
                               decoration: BoxDecoration(
-                                color: Colors.grey[200],
+                                color: Theme.of(context).primaryColor,
                                 borderRadius: BorderRadius.circular(8),
                               ),
                               child: ListTile(
@@ -51,9 +51,16 @@ class Cartpage extends StatelessWidget {
                                   cartvalue.cartitems[index][2],
                                   height: 36,
                                 ),
-                                title: Text(cartvalue.cartitems[index][0]),
+                                title: Text(
+                                  cartvalue.cartitems[index][0],
+                                  style: Theme.of(context).textTheme.titleSmall,
+                                ),
                                 // ignore: prefer_interpolation_to_compose_strings
-                                subtitle: Text('\$' + cartvalue.cartitems[index][1]),
+                                subtitle: Text(
+                                  // ignore: prefer_interpolation_to_compose_strings
+                                  '\$' + cartvalue.cartitems[index][1],
+                                  style: Theme.of(context).textTheme.titleSmall,
+                                ),
                                 trailing: IconButton(
                                   onPressed: () {
                                     Provider.of<Cartmodel>(
@@ -87,15 +94,11 @@ class Cartpage extends StatelessWidget {
                         children: [
                           Text(
                             "Total Price",
-                            style: TextStyle(color: Colors.white, fontSize: 17),
+                            style: TextStyle(color: Colors.white, fontSize: 17, fontWeight: FontWeight.bold),
                           ),
                           Text(
                             '\$${cartvalue.calculatetotalprice()}',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 19,
-                            ),
+                            style: TextStyle(color: Colors.white, fontSize: 17, fontWeight: FontWeight.bold),
                           ),
                         ],
                       ),

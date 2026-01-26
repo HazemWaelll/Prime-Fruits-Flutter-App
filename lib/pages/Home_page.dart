@@ -24,7 +24,10 @@ class _HomepageState extends State<Homepage> {
           // hi there
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 24.0),
-            child: Text("Hi there,"),
+            child: Text(
+              "Hi there,",
+              style: Theme.of(context).textTheme.bodySmall,
+            ),
           ),
 
           SizedBox(height: 4),
@@ -34,7 +37,7 @@ class _HomepageState extends State<Homepage> {
             padding: const EdgeInsets.symmetric(horizontal: 24.0),
             child: Text(
               "Let's order some fresh food for you",
-              style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+              style: Theme.of(context).textTheme.headlineLarge,
             ),
           ),
 
@@ -54,8 +57,8 @@ class _HomepageState extends State<Homepage> {
               bottom: 4.5,
             ),
             child: Text(
-              "Note! Minimum amount to purchase is 1 kilo.",
-              style: TextStyle(fontSize: 16),
+              "Note! Minimum amount to buy is 1 kilo.",
+              style: Theme.of(context).textTheme.titleMedium,
             ),
           ),
 

@@ -27,12 +27,15 @@ class Intropage extends StatelessWidget {
             child: Text(
               textAlign: TextAlign.center,
               "We deliver fresh food to your home",
-              style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
+              style: Theme.of(context).textTheme.headlineLarge,
             ),
           ),
 
           // subtitle
-          Text("Fresh items everyday"),
+          Text(
+            "Fresh items everyday",
+            style: Theme.of(context).textTheme.bodySmall,
+          ),
 
           Spacer(),
 

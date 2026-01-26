@@ -21,7 +21,7 @@ class Favoritespage extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 24.0),
                 child: Text(
                   "My Favorites",
-                  style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+                  style: Theme.of(context).textTheme.headlineLarge,
                 ),
               ),
 
@@ -31,7 +31,7 @@ class Favoritespage extends StatelessWidget {
                       Center(
                         child: Text(
                           "Favorites is empty",
-                          style: TextStyle(fontSize: 18, color: Colors.black, fontWeight: FontWeight.bold),
+                          style: Theme.of(context).textTheme.bodyLarge,
                         ),
                       )
                     : ListView.builder(
@@ -42,7 +42,7 @@ class Favoritespage extends StatelessWidget {
                             padding: const EdgeInsets.all(12.0),
                             child: Container(
                               decoration: BoxDecoration(
-                                color: Colors.grey[200],
+                                color: Theme.of(context).primaryColor,
                                 borderRadius: BorderRadius.circular(8),
                               ),
                               child: ListTile(
@@ -50,9 +50,16 @@ class Favoritespage extends StatelessWidget {
                                   favoritevalue.favoriteitems[index][2],
                                   height: 36,
                                 ),
-                                title: Text(favoritevalue.favoriteitems[index][0]),
+                                title: Text(
+                                  favoritevalue.favoriteitems[index][0],
+                                  style: Theme.of(context).textTheme.titleSmall,
+                                ),
                                 // ignore: prefer_interpolation_to_compose_strings
-                                subtitle: Text('\$' + favoritevalue.favoriteitems[index][1]),
+                                subtitle: Text(
+                                  // ignore: prefer_interpolation_to_compose_strings
+                                  '\$' + favoritevalue.favoriteitems[index][1],
+                                  style: Theme.of(context).textTheme.titleSmall,
+                                ),
                                 trailing: IconButton(
                                   onPressed: () {
                                     Provider.of<Favoritemodel>(

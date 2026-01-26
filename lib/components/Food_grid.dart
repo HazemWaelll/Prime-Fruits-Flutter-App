@@ -22,7 +22,7 @@ class Foodgrid extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: Colors.grey[350],
+        color: Theme.of(context).primaryColor,
         borderRadius: BorderRadius.circular(20),
       ),
       margin: EdgeInsets.all(11),
@@ -51,7 +51,10 @@ class Foodgrid extends StatelessWidget {
           // name
           Transform.translate(
             offset: const Offset(0, -18),
-            child: Text(itemname, style: TextStyle(fontSize: 20)),
+            child: Text(
+              itemname,
+              style: Theme.of(context).textTheme.bodyLarge,
+            ),
           ),
 
           // price
@@ -59,7 +62,7 @@ class Foodgrid extends StatelessWidget {
             offset: Offset(0, -16),
             child: Text(
               '\$$itemprice',
-              style: TextStyle(fontSize: 17, fontWeight: FontWeight.w900),
+              style: Theme.of(context).textTheme.bodyLarge,
             ),
           ),
 
@@ -68,8 +71,8 @@ class Foodgrid extends StatelessWidget {
             offset: const Offset(0, -15),
             child: MaterialButton(
               onPressed: onPressed,
-              color: Colors.greenAccent,
-              child: Text('Add To Cart', style: TextStyle(fontSize: 14)),
+              color: Theme.of(context).highlightColor,
+              child: Text('Add To Cart', style: Theme.of(context).textTheme.titleSmall,),
             ),
           ),
         ],
