@@ -15,7 +15,7 @@ class Cartpage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               // safe area
-              const SizedBox(height: 28,),
+              const SizedBox(height: 28),
 
               // My Cart
               Padding(
@@ -28,8 +28,8 @@ class Cartpage extends StatelessWidget {
 
               // Cart Items
               Expanded(
-                child: cartvalue.cartitems.isEmpty?
-                      Center(
+                child: cartvalue.cartitems.isEmpty
+                    ? Center(
                         child: Text(
                           "Cart is empty",
                           style: Theme.of(context).textTheme.bodyLarge,
@@ -41,41 +41,87 @@ class Cartpage extends StatelessWidget {
                         itemBuilder: (context, index) {
                           return Padding(
                             padding: const EdgeInsets.all(12.0),
+
                             child: Container(
                               decoration: BoxDecoration(
                                 color: Theme.of(context).primaryColor,
                                 borderRadius: BorderRadius.circular(8),
                               ),
+
                               child: ListTile(
                                 leading: Image.asset(
                                   cartvalue.cartitems[index][2],
                                   height: 36,
                                 ),
+
                                 title: Text(
                                   cartvalue.cartitems[index][0],
                                   style: Theme.of(context).textTheme.titleSmall,
                                 ),
+
                                 // ignore: prefer_interpolation_to_compose_strings
                                 subtitle: Text(
                                   // ignore: prefer_interpolation_to_compose_strings
                                   '\$' + cartvalue.cartitems[index][1],
                                   style: Theme.of(context).textTheme.titleSmall,
                                 ),
-                                trailing: IconButton(
-                                  onPressed: () {
-                                    Provider.of<Cartmodel>(
-                                      context,
-                                      listen: false,
-                                    ).removeitemsfromcart(index);
-                                  },
-                                  icon: Icon(Icons.cancel),
+
+                                trailing: Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    IconButton(
+                                      onPressed: () {
+                                        // remove ONE item
+                                        if (cartvalue.cartitems[index][3] > 1) {
+                                          Provider.of<Cartmodel>(
+                                            context,
+                                            listen: false,
+                                          ).decrementQuantity(index);
+                                        } 
+                                        else {
+                                          Provider.of<Cartmodel>(
+                                            context,
+                                            listen: false,
+                                          ).removeitemsfromcart(index);
+                                        }
+                                      },
+                                      icon: Icon(Icons.remove),
+                                    ),
+
+                                    Text(
+                                      cartvalue.cartitems[index][3].toString(),
+                                      style: Theme.of(context).textTheme.bodyMedium,
+                                    ),
+
+                                    IconButton(
+                                      onPressed: () {
+                                        // add one item
+                                        Provider.of<Cartmodel>(
+                                          context,
+                                          listen: false,
+                                        ).incrementQuantity(index);
+                                      },
+                                      icon: Icon(Icons.add),
+                                    ),
+
+                                    IconButton(
+                                      // remove THE item
+                                      onPressed: () {
+                                        Provider.of<Cartmodel>(
+                                          context,
+                                          listen: false
+                                        ).removeitemsfromcart(index);
+                                      },
+                                      icon: Icon(Icons.cancel),
+                                    ),
+                                  ],
                                 ),
                               ),
                             ),
                           );
                         },
                       ),
-                    ),
+              ),
 
               // Total Price Container
               Padding(
@@ -94,11 +140,19 @@ class Cartpage extends StatelessWidget {
                         children: [
                           Text(
                             "Total Price",
-                            style: TextStyle(color: Colors.white, fontSize: 17, fontWeight: FontWeight.bold),
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 17,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                           Text(
                             '\$${cartvalue.calculatetotalprice()}',
-                            style: TextStyle(color: Colors.white, fontSize: 17, fontWeight: FontWeight.bold),
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 17,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ],
                       ),

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:prime_fruits/models/Favorite_model.dart';
 import 'package:provider/provider.dart';
 import 'package:prime_fruits/models/Cart_model.dart';
-import 'package:prime_fruits/pages/Intro_page.dart';
+import 'package:prime_fruits/pages/Splash_page.dart';
 
 final thememode = ValueNotifier<ThemeMode>(ThemeMode.light);
 
@@ -30,7 +30,7 @@ class _MyAppState extends State<MyApp> {
         builder: (context, themevalue, child) {
           return MaterialApp(
             debugShowCheckedModeBanner: false,
-            home: Intropage(),
+            home: SplashPage(),
             themeMode: themevalue,
 
             theme: ThemeData(

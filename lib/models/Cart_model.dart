@@ -27,13 +27,40 @@ class Cartmodel extends ChangeNotifier {
 
   List get cartitems => _cartitems;
 
-  // add items to cart
+  // add item or increase quantity --> used in Add to cart button
   void additemstocart(int index) {
-    _cartitems.add(_shopitems[index]);
+    bool isfound = false;
+    for (var item in _cartitems) {
+      if (item[0] == _shopitems[index][0]) {
+        item[3]++; // increase quantity
+        isfound = true;
+        break;
+      }
+    }
+    if (!isfound) {
+      _cartitems.add([
+        _shopitems[index][0],
+        _shopitems[index][1],
+        _shopitems[index][2],
+        1, // quantity
+      ]);
+    }
     notifyListeners();
   }
 
-  // remove items from cart
+  // increase quantity --> used in add icon in cart containers
+  incrementQuantity(int index) {
+    _cartitems[index][3]++;
+    notifyListeners();
+  }
+
+  // decrease quantity --> used in remove icon in cart containers
+  decrementQuantity(int index) {
+    _cartitems[index][3]--;
+    notifyListeners();
+  }
+
+  // remove item --> used in remove & cancel icons in cart/favorites containers
   void removeitemsfromcart(int index) {
     _cartitems.removeAt(index);
     notifyListeners();
@@ -42,8 +69,8 @@ class Cartmodel extends ChangeNotifier {
   // calculate total price
   String calculatetotalprice() {
     double totalprice = 0;
-    for (int i = 0; i < _cartitems.length; i++) {
-      totalprice += double.parse(_cartitems[i][1]);
+    for (var item in _cartitems) {
+      totalprice += double.parse(item[1]) * item[3];
     }
     return totalprice.toStringAsFixed(2);
   }
