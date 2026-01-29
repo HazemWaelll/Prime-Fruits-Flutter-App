@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
 
 class Favoritemodel extends ChangeNotifier {
   final List _shopitems = [
@@ -20,7 +21,26 @@ class Favoritemodel extends ChangeNotifier {
     ["watermelon", "6.00", "assets/images/watermelon.png"],
   ];
   // list of favorites items
-  final List _favoriteitems = [];
+  late List _favoriteitems = [];
+  late Box<dynamic> _favoritesBox;
+
+  // Constructor
+  Favoritemodel() {
+    _initializeFavorites();
+  }
+
+  // Initialize favorites from Hive database
+  Future<void> _initializeFavorites() async {
+    _favoritesBox = Hive.box('favoritesBox');
+    final savedItems = _favoritesBox.get('favoriteItems', defaultValue: []);
+    _favoriteitems = List.from(savedItems);
+    notifyListeners();
+  }
+
+  // Save favorites to Hive
+  void _saveFavorites() {
+    _favoritesBox.put('favoriteItems', _favoriteitems);
+  }
 
   List get shopitems => _shopitems;
 
@@ -39,15 +59,15 @@ class Favoritemodel extends ChangeNotifier {
   void toggleFavorite(int index) {
     if (isInFavorites(index)) {
       _favoriteitems.removeWhere(
-      (item) =>
-          item[0] == _shopitems[index][0] &&
-          item[1] == _shopitems[index][1] &&
-          item[2] == _shopitems[index][2],
+        (item) =>
+            item[0] == _shopitems[index][0] &&
+            item[1] == _shopitems[index][1] &&
+            item[2] == _shopitems[index][2],
       );
-    } 
-    else {
+    } else {
       _favoriteitems.add(_shopitems[index]);
     }
+    _saveFavorites();
     notifyListeners();
   }
 
@@ -55,6 +75,7 @@ class Favoritemodel extends ChangeNotifier {
   void removeFavoriteByIndex(int index) {
     if (index >= 0 && index < _favoriteitems.length) {
       _favoriteitems.removeAt(index);
+      _saveFavorites();
       notifyListeners();
     }
   }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
 
 class Cartmodel extends ChangeNotifier {
   // list of items on sale
@@ -21,7 +22,26 @@ class Cartmodel extends ChangeNotifier {
     ["watermelon", "6.00", "assets/images/watermelon.png"],
   ];
   // list of cart items
-  final List _cartitems = [];
+  late List _cartitems = [];
+  late Box<dynamic> _cartBox;
+
+  // Constructor
+  Cartmodel() {
+    _initializeCart();
+  }
+
+  // Initialize cart from Hive database
+  Future<void> _initializeCart() async {
+    _cartBox = Hive.box('cartBox');
+    final savedItems = _cartBox.get('cartItems', defaultValue: []);
+    _cartitems = List.from(savedItems);
+    notifyListeners();
+  }
+
+  // Save cart items to Hive
+  Future<void> _saveCart() async {
+    await _cartBox.put('cartItems', _cartitems);
+  }
 
   List get shopitems => _shopitems;
 
@@ -45,24 +65,28 @@ class Cartmodel extends ChangeNotifier {
         1, // quantity
       ]);
     }
+    _saveCart();
     notifyListeners();
   }
 
   // increase quantity --> used in add icon in cart containers
   incrementQuantity(int index) {
     _cartitems[index][3]++;
+    _saveCart();
     notifyListeners();
   }
 
   // decrease quantity --> used in remove icon in cart containers
   decrementQuantity(int index) {
     _cartitems[index][3]--;
+    _saveCart();
     notifyListeners();
   }
 
   // remove item --> used in remove & cancel icons in cart/favorites containers
   void removeitemsfromcart(int index) {
     _cartitems.removeAt(index);
+    _saveCart();
     notifyListeners();
   }
 
