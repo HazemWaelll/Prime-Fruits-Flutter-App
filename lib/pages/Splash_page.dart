@@ -10,11 +10,11 @@ class SplashPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return AnimatedSplashScreen(
       splash: Center(
-        child: Lottie.asset('assets/images/FruitBasket.json')
+        child: Lottie.asset('assets/images/ThanksgivingBasket.json')
       ),
       nextScreen: const BottomBar(),
       splashIconSize: 200,
-      duration: 1800,
+      duration: 2000,
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
     );
   }
