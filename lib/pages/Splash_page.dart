@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:animated_splash_screen/animated_splash_screen.dart';
-import 'package:prime_fruits/models/Bottom_Bar.dart';
+import 'package:prime_fruits/components/Bottom_Bar.dart';
 
 class SplashPage extends StatelessWidget {
   const SplashPage({super.key});
