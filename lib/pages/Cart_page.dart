@@ -59,10 +59,8 @@ class Cartpage extends StatelessWidget {
                                   style: Theme.of(context).textTheme.titleSmall,
                                 ),
 
-                                // ignore: prefer_interpolation_to_compose_strings
                                 subtitle: Text(
-                                  // ignore: prefer_interpolation_to_compose_strings
-                                  '\$' + cartvalue.cartitems[index][1],
+                                  cartvalue.cartitems[index][1] + ' EGP',
                                   style: Theme.of(context).textTheme.titleSmall,
                                 ),
 
@@ -147,7 +145,8 @@ class Cartpage extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            '\$${cartvalue.calculatetotalprice()}',
+                            // ignore: prefer_interpolation_to_compose_strings
+                            cartvalue.calculatetotalprice() + ' EGP',
                             style: TextStyle(
                               color: Colors.white,
                               fontSize: 17,

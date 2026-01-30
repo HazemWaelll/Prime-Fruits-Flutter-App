@@ -56,8 +56,7 @@ class Favoritespage extends StatelessWidget {
                                 ),
                                 // ignore: prefer_interpolation_to_compose_strings
                                 subtitle: Text(
-                                  // ignore: prefer_interpolation_to_compose_strings
-                                  '\$' + favoritevalue.favoriteitems[index][1],
+                                  favoritevalue.favoriteitems[index][1] + ' EGP',
                                   style: Theme.of(context).textTheme.titleSmall,
                                 ),
                                 trailing: IconButton(

@@ -61,7 +61,7 @@ class Foodgrid extends StatelessWidget {
           Transform.translate(
             offset: Offset(0, -16),
             child: Text(
-              '\$$itemprice',
+              '$itemprice EGP',
               style: Theme.of(context).textTheme.bodyLarge,
             ),
           ),
