@@ -38,35 +38,6 @@ Prime Fruits is a complete e-commerce application designed specifically for fres
 - **Navigation Bar**: Bottom navigation for easy access to Home, Cart, Favorites, and Settings
 - **Settings Page**: Manage app preferences and theme options
 
-## 📦 Dependencies & Packages Used
-
-### Core Framework
-- **flutter**: ^3.8.1 - The foundation framework for cross-platform mobile app development
-
-### UI & Design
-- **cupertino_icons**: ^1.0.8 - iOS-style icon set for native-like Apple design elements
-- **animated_splash_screen**: ^1.0.0 - Smooth animated splash screen with customizable animations
-- **lottie**: ^3.0.0 - Render Adobe After Effects animations natively in Flutter
-
-### State Management
-- **provider**: ^6.1.5+1 - Excellent provider-based state management solution providing:
-  - ChangeNotifier for reactive updates
-  - MultiProvider for managing multiple providers
-  - ValueListenableBuilder for listening to theme changes
-  - Clean separation of business logic from UI
-
-### Data Persistence
-- **hive**: ^2.2.3 - Ultra-fast, lightweight NoSQL database for local data storage featuring:
-  - Type-safe operations with auto-generated adapters
-  - Async/await support for non-blocking operations
-  - Zero configuration database
-  - Perfect for mobile app caching and persistence
-  
-- **hive_flutter**: ^1.1.0 - Flutter integration layer for Hive providing:
-  - Platform-specific initialization
-  - Seamless integration with Flutter's lifecycle
-  - Easy setup with `Hive.initFlutter()`
-
 ## 🏗️ Project Structure
 
 ```
